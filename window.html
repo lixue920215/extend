@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery-2.1.4.min.js" /></script>
+<script type="text/javascript" src="js/window.js" /></script>
+<style>
+    *{margin:0;padding:0;}
+    body{
+        text-align:center;
+    }
+    .window-btn{
+        color:#000;
+        text-decoration: none;
+        font-size:12px;
+        display:inline-block;
+    }
+    .window-btn:hover{
+        text-decoration: none;
+    }
+    .window-box{
+        position:fixed;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        margin:auto;
+        z-index:100;
+        width:300px;
+        height:100px;
+        background:#ccc;
+    }
+    .window-title{
+        text-align:left;
+        color:#000;
+        font-size:12px;
+        height:30px;
+        line-height: 30px;
+        padding-left:10px;
+    }
+    .window-content{
+        display:table-cell;
+        font-size:14px;
+        color:#f00;
+        text-align:center;
+        vertical-align: middle;
+        width:300px;
+        height:50px;
+    }
+    .window-button{
+        font-size:12px;
+        text-align:right;
+        padding-right:15px;
+    }
+    .window-button>a{
+        display:inline-block;
+        color:#000;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+    .window-button>a:hover{
+        color:#000;
+    }
+</style>
+</head>
+<body>
+    <a href="javascript:;" class="window-btn">显示弹窗</a>
+    <!--<div class="window-box">
+        <p class="window-title">系统提示</p>
+        <p class="window-content">是否删除?</p>
+        <p class="window-button">
+            <a href="javascript:;">确认</a>
+            <a href="javascript:;">取消</a>
+        </p>
+    </div>-->
+    <script type="text/javascript">
+        $(function(){
+            $(".window-btn").click(function(){
+                $(this).win({title:"系统提示",content:"请填写正确信息"})
+            });
+        })
+    </script>
+</body>
+
+</html>
