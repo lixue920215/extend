@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
 <script type="text/javascript" src="js/jquery-2.1.4.min.js" /></script>
 <script type="text/javascript" src="js/window.js" /></script>
+<script type="text/javascript" src="js/jquery.nicescroll.js" /></script>
 <style>
     *{margin:0;padding:0;}
     body{
@@ -62,6 +63,113 @@
     .window-button>a:hover{
         color:#000;
     }
+    
+    /* 模拟下拉控件样式 start */
+    .select-wrap{
+        min-width:80px;
+        display:inline-block;
+        vertical-align:middle;
+        height:34px;
+        position:relative;
+        background:#fff;
+        }
+    .select-wrap > span.selected{
+        position:relative;
+        display:block;
+        height:32px;
+        padding: 0 10px 0 10px;
+        line-height:32px;
+        border:1px solid #c0c0c0;
+        border-radius:3px;
+        cursor:pointer;
+        overflow:hidden;
+        white-space:nowrap;
+        word-break:keep-all;
+        text-overflow:ellipsis;
+        }
+    .select-wrap > span.selected:after{
+        position:absolute;
+        content:'';
+        width:10px;
+        height:5px;
+        right:10px;
+        top:50%;
+        margin-top:-2px;
+        overflow:hidden;
+        background:url(images/fromIcon.png) no-repeat scroll 0px -142px;
+        -webkit-transition:all 0.3s ease-out ;
+        -moz-transition:all 0.3s ease-out ;
+        -o-transition:all 0.3s ease-out ;
+        transition:all 0.3s ease-out ;
+        }
+    .dropdown > span.selected:after{
+        -webkit-transform:rotate(-180deg);
+        -moz-transform:rotate(-180deg);
+        -o-transform:rotate(-180deg);
+        transform:rotate(-180deg);
+        }
+    .select-wrap > .select-drop-wrap{
+        width:100%;
+        position:absolute;
+        margin-top:31px;
+        overflow:hidden;
+        border-radius:3px;
+        top:0;
+        left:0;
+        /*top:20px;*/
+        z-index:-1;
+        opacity:0;
+        max-height:200px;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0); /* ie8 */
+        }
+    .dropdown >.select-drop-wrap{
+        top:0;
+        z-index:10;
+        opacity:1;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100); /* ie8 */
+        }
+    .select-drop{
+        overflow:hidden;
+        border-radius:3px;
+        border:1px solid #c0c0c0;
+        border-bottom:none;
+        background:#fff;
+        }
+    .select-drop a.option{
+        height:32px;
+        line-height:32px;
+        color:#4b4b4b;
+        display:block;
+        padding:0 10px;
+        border-bottom:1px solid #c0c0c0;
+        }
+    .select-drop a.option:hover,
+    .select-drop a.selected{
+        color:#333;
+        background-color:#f3f3f3;
+        }
+    .select-wrap:hover > span.selected{
+        border-color:#aaa;
+        box-shadow:0 0 2px #aaa;
+        }
+    .select-wrap:hover .select-drop-wrap{
+        box-shadow:0 1px 2px #aaa;
+        }
+    .select-wrap > span.selected,
+    .select-wrap:hover > span.selected,
+    .select-wrap > span.selected:after,
+    .dropdown > span.selected:after,
+    .add-wrap .add-item,   /* 相同日期选择时边框高亮 */
+    .select-wrap .select-drop-wrap,
+    .select-wrap:hover .select-drop-wrap,
+    .dropdown >.select-drop-wrap
+        {
+        -webkit-transition:all 0.3s ease-out ;
+        -moz-transition:all 0.3s ease-out ;
+        -o-transition:all 0.3s ease-out ;
+        transition:all 0.3s ease-out ;	
+        }
+    /* 模拟下拉控件样式 end */
 </style>
 </head>
 <body>
@@ -74,11 +182,40 @@
             <a href="javascript:;">取消</a>
         </p>
     </div>-->
+    <div class="select-wrap w150" id="aaa">
+        <span class="selected prizeLevel" id="prizeLevel0" data-type="">无</span>
+        <div class="select-drop-wrap scroll" tabindex="5000" style="overflow: hidden; outline: none;">
+          <div class="select-drop" tag="ddl">
+            <a href="javascript:;" class="option selected" data-type="">无</a>
+            <a href="javascript:;" class="option" data-type="一等奖">一等奖</a>
+            <a href="javascript:;" class="option" data-type="二等奖">二等奖</a>
+            <a href="javascript:;" class="option" data-type="三等奖">三等奖</a>
+            <a href="javascript:;" class="option" data-type="四等奖">四等奖</a>
+            <a href="javascript:;" class="option" data-type="五等奖">五等奖</a>
+            <a href="javascript:;" class="option" data-type="六等奖">六等奖</a>
+            <a href="javascript:;" class="option" data-type="七等奖">七等奖</a></div>
+        </div>
+    </div>
+    <div class="select-wrap w150" id="aaa">
+        <span class="selected prizeLevel" id="prizeLevel0" data-type="">无</span>
+        <div class="select-drop-wrap scroll" tabindex="5000" style="overflow: hidden; outline: none;">
+          <div class="select-drop" tag="ddl">
+            <a href="javascript:;" class="option selected" data-type="">无</a>
+            <a href="javascript:;" class="option" data-type="一等奖">一等奖</a>
+            <a href="javascript:;" class="option" data-type="二等奖">二等奖</a>
+            <a href="javascript:;" class="option" data-type="三等奖">三等奖</a>
+            <a href="javascript:;" class="option" data-type="四等奖">四等奖</a>
+            <a href="javascript:;" class="option" data-type="五等奖">五等奖</a>
+            <a href="javascript:;" class="option" data-type="六等奖">六等奖</a>
+            <a href="javascript:;" class="option" data-type="七等奖">七等奖</a></div>
+        </div>
+    </div>
     <script type="text/javascript">
         $(function(){
             $(".window-btn").click(function(){
                 $(this).win({title:"系统提示",content:"请填写正确信息"})
             });
+            $('.select-wrap').selectCustom({});
         })
     </script>
 </body>
